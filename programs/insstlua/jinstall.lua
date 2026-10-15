@@ -246,7 +246,7 @@ function JInstall:process_form_event_(continuing, clicked_objn, edited_objn)
   elseif clicked_objn == cdefs.fm1_prgs_fsel then
     -- Button for programs destination file selector
     local <const> status, cancel_ok, path, file =
-      self:fsel_(self.loop.rsrc_dir, "", "Choose prgs directory")
+      self:fsel_(self.loop.init_dir, "", "Choose prgs directory")
     -- Change button state back to normal
     rsrc:obj_poke_state(self.fm1_prgs_fsel_offset_, k_obch_normal)
     if status > 0 and cancel_ok == 1 then
@@ -260,7 +260,7 @@ function JInstall:process_form_event_(continuing, clicked_objn, edited_objn)
   elseif clicked_objn == cdefs.fm1_mods_fsel then
     -- Button for modules destination file selector
     local <const> status, cancel_ok, path, file =
-      self:fsel_(self.loop.rsrc_dir, "", "Choose mods directory")
+      self:fsel_(self.loop.init_dir, "", "Choose mods directory")
     -- Change button state back to normal
     rsrc:obj_poke_state(self.fm1_mods_fsel_offset_, k_obch_normal)
     if status > 0 and cancel_ok == 1 then

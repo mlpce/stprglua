@@ -58,7 +58,7 @@ end
 function JCopy:init_job()
   self.aes_ = self.loop.aes
   self.rsrc_ = self.loop.rsrc
-  self.rsrc_dir_ = self.loop.rsrc_dir
+  self.init_dir_ = self.loop.init_dir
 
   -- Get the logger job
   self.logger_job_ = self.loop:get_job_by_name("logger")
@@ -133,7 +133,7 @@ function JCopy:count_copy_items_()
 
   local <const> items = self.items_
   for k,v in ipairs(items) do
-    local <const> path = k_Path.join_path(self.rsrc_dir_, v)
+    local <const> path = k_Path.join_path(self.init_dir_, v)
     local <const> attrib = gemdos.Fattrib(path, 0, 0)
     if attrib < 0 then
       self.logger_job_:log("ec ", attrib, " path ", path)
@@ -237,7 +237,7 @@ function JCopy:do_copy_items_()
 
   local <const> items = self.items_
   for k,v in ipairs(items) do
-    local <const> path = k_Path.join_path(self.rsrc_dir_, v)
+    local <const> path = k_Path.join_path(self.init_dir_, v)
     local <const> attrib = gemdos.Fattrib(path, 0, 0)
     if attrib < 0 then
       self.logger_job_:log("ec ", attrib, " path ", path)

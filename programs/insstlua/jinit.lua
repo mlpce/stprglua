@@ -160,7 +160,7 @@ function JInit:init_job()
 
   -- Load the default configuration. Load failures are not checked here.
   -- Any missing/bad configuration is discarded by load_config_.
-  local <const> path = k_Path.join_path(self.loop.rsrc_dir, "INSTALL.CFG")
+  local <const> path = k_Path.join_path(self.loop.init_dir, "INSTALL.CFG")
   self:load_config_(path)
 
   -- Set the timer. This is the timeout for evnt_multi timer events.
@@ -348,7 +348,7 @@ function JInit:mn1_load_config_handler(happened, mx, my,
     -- Use the file selector to choose the configuration file to load
     local <const> status, cancel_ok, path, file =
       self.aes_:fsel_wrapper(
-        self.loop.rsrc_dir, "INSTALL.CFG", "Load config")
+        self.loop.init_dir, "INSTALL.CFG", "Load config")
 
     if status > 0 and cancel_ok == 1 then
       -- Combine the directory and file into a full file path
@@ -425,7 +425,7 @@ function JInit:mn1_save_config_handler(happened, mx, my,
   return k_WindRefs:call_modal(function()
     local <const> status, cancel_ok, path, file =
       self.aes_:fsel_wrapper(
-        self.loop.rsrc_dir, "INSTALL.CFG", "Save config")
+        self.loop.init_dir, "INSTALL.CFG", "Save config")
 
     if status > 0 and cancel_ok == 1 then
       local dir = k_Path.dir_from_path(path)
@@ -528,7 +528,7 @@ function JInit:mn1_readme_handler(happened, mx, my,
     -- Release notes txtview job already exists, top the window
     self.readme_jtxtview_:set_top()
   else
-    local <const> path = k_Path.join_path(self.loop.rsrc_dir, "README.TXT")
+    local <const> path = k_Path.join_path(self.loop.init_dir, "README.TXT")
     -- Load the readme into lines table as an array of strings.
     local <const> aes = self.aes_
     aes:graf_mouse(k_grmo_hourglass)
